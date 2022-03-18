@@ -1,5 +1,6 @@
-package com.example.examplemod;
+package com.staticallytyped.kagawaassist;
 
+import com.staticallytyped.kagawaassist.coordinate.Coordinate;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
