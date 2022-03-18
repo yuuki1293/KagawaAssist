@@ -12,12 +12,14 @@ import org.lwjgl.glfw.GLFW
 
 @Mod.EventBusSubscriber
 object KeyBind {
+  val KeyBindingDescription = "Kagawa Assist"
+
   val coordinateKeyBinding = new KeyBinding(
-    "key.kagawaassist.name",
+    KeyBindingDescription,
     KeyConflictContext.IN_GAME,
     InputMappings.Type.KEYSYM,
     GLFW.GLFW_KEY_Z,
-  "key.kagawaassist.coordinate")
+  "座標をクリップボードにコピー")
   ClientRegistry.registerKeyBinding(coordinateKeyBinding)
 
   @SubscribeEvent
