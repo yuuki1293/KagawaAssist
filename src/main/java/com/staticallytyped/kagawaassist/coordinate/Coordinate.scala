@@ -1,7 +1,6 @@
 package com.staticallytyped.kagawaassist.coordinate
 
 import net.minecraft.client.Minecraft
-import net.minecraft.command.ISuggestionProvider.Coordinates
 
 import java.awt.Toolkit
 import java.awt.datatransfer.StringSelection
