@@ -1,5 +1,6 @@
 package com.staticallytyped.kagawaassist.coordinate.f3
 
+import com.mojang.blaze3d.matrix.MatrixStack
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.FontRenderer
 import net.minecraftforge.api.distmarker.{Dist, OnlyIn}
@@ -16,13 +17,15 @@ class F3() {
   val valueColor = 0xFFFFFF
 
   @SubscribeEvent
-  def render(event: RenderGameOverlayEvent): Unit =
+  def render(event: RenderGameOverlayEvent): Unit = {
     event.getType match {
       case RenderGameOverlayEvent.ElementType.TEXT =>
-        implicit val e: RenderGameOverlayEvent = event
+        implicit val matrixStack: MatrixStack = event.getMatrixStack
         new Coordinate(0, this).render()
         new Facing(1, this).render()
+        new Time(2, this).render()
       case _ => ()
     }
+  }
 }
 

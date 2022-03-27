@@ -4,7 +4,7 @@ import com.mojang.blaze3d.matrix.MatrixStack
 import net.minecraft.client.Minecraft
 import net.minecraft.util.math.BlockPos
 
-class Coordinate(column:Int, f3: F3)(implicit matrixStack: MatrixStack) extends AbstractPart(column, f3) {
+class Coordinate(column:Int, f3: F3)(implicit matrixStack: MatrixStack) extends AbstractPart(column)(f3) {
   override def render(): Unit = {
     implicit val col: Int = column
     val player: BlockPos = Minecraft.getInstance.player.getPosition
