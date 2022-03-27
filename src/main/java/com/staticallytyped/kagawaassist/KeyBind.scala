@@ -23,9 +23,7 @@ object KeyBind {
   ClientRegistry.registerKeyBinding(coordinateKeyBinding)
 
   @SubscribeEvent
-  def onKeyInput(event: InputEvent.KeyInputEvent): Unit = {
-    if (coordinateKeyBinding.isPressed) {
+  def onKeyInput(event: InputEvent.KeyInputEvent): Unit =
+    if (coordinateKeyBinding.isPressed)
       Coordinate.onPressKey()
-    }
-  }
 }

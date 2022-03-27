@@ -1,13 +1,13 @@
 package com.staticallytyped.kagawaassist.coordinate
 
 import net.minecraft.client.Minecraft
-import net.minecraft.command.ISuggestionProvider.Coordinates
+import org.apache.logging.log4j.LogManager
 
 import java.awt.Toolkit
 import java.awt.datatransfer.StringSelection
 
 object Coordinate {
-  def onPressKey(): Unit = {
+  def onPressKey(): Unit =
     try {
       val player = Minecraft.getInstance().player
       val position = player.getPosition
@@ -15,7 +15,8 @@ object Coordinate {
       val text = s"${position.getX} ${position.getY} ${position.getZ} in ${player.getEntityWorld.getDimensionType.toString}"
       clipboard.setContents(new StringSelection(text), null)
     } catch {
-      case e: java.awt.HeadlessException => e.printStackTrace()
+      case e: java.awt.HeadlessException =>
+        e.printStackTrace()
+        LogManager.getLogger().info(s"クリップボードへのコピーに失敗しました")
     }
-  }
 }

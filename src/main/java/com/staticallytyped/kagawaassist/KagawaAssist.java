@@ -1,6 +1,7 @@
 package com.staticallytyped.kagawaassist;
 
-import com.staticallytyped.kagawaassist.coordinate.Coordinate;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.staticallytyped.kagawaassist.coordinate.f3.F3;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -51,6 +52,7 @@ public class KagawaAssist
     private void doClientStuff(final FMLClientSetupEvent event) {
         // do something that can only be done on the client
         LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().gameSettings);
+        new F3();
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)
