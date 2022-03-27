@@ -190,3 +190,18 @@ publishing {
 repositories {
     mavenCentral()
 }
+
+task signJar<<{
+    ant.signjar(
+            jar:jar.getArchivePath,
+            alias:"kagawaassist",
+            keystore:"KagawaAssist.p12",
+            storepass:"<PASSWORD>",
+            sigalg:"SHA256withECDSA",
+            digestalg:"SHA-256",
+            tsaurl:"http://timestamp.digicert.com"
+    )
+}
+
+signJar.dependsOn reobfJar
+assemble.dependsOn signJar
