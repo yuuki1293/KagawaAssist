@@ -1,11 +1,12 @@
 package com.staticallytyped.kagawaassist.coordinate.f3
 
+import com.mojang.blaze3d.matrix.MatrixStack
 import net.minecraft.client.Minecraft
 import net.minecraft.util.math.BlockPos
-import net.minecraftforge.client.event.RenderGameOverlayEvent
 
-class Coordinate(column:Int, f3: F3)(implicit event:RenderGameOverlayEvent) extends AbstractPart(column, f3)(event) {
+class Coordinate(column:Int, f3: F3)(implicit matrixStack: MatrixStack) extends AbstractPart(f3) {
   override def render(): Unit = {
+    implicit val col: Int = column
     val player: BlockPos = Minecraft.getInstance.player.getPosition
     val textX = s"x: "
     val textY = s"y: "

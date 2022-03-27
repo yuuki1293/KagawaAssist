@@ -1,10 +1,10 @@
 package com.staticallytyped.kagawaassist.coordinate.f3
 
+import com.mojang.blaze3d.matrix.MatrixStack
 import net.minecraft.client.Minecraft
-import net.minecraftforge.client.event.RenderGameOverlayEvent
 
 //NOTE: north 180, south 0, east 270, west 90
-class Facing(column: Int, f3: F3)(implicit event: RenderGameOverlayEvent) extends AbstractPart(column, f3)(event) {
+class Facing(column: Int, f3: F3)(implicit matrixStack: MatrixStack) extends AbstractPart(f3) {
   override def render(): Unit = {
     implicit val col: Int = column
     val player = Minecraft.getInstance.player

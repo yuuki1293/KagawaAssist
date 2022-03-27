@@ -2,7 +2,6 @@ package com.staticallytyped.kagawaassist.coordinate.f3
 
 import com.mojang.blaze3d.matrix.MatrixStack
 import net.minecraft.client.gui.FontRenderer
-import net.minecraftforge.client.event.RenderGameOverlayEvent
 
 class DrawText(fontRenderer: FontRenderer) {
   private var beforeText: String = ""
