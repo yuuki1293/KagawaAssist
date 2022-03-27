@@ -19,7 +19,7 @@ object KeyBind {
     KeyConflictContext.IN_GAME,
     InputMappings.Type.KEYSYM,
     GLFW.GLFW_KEY_Z,
-  "座標をクリップボードにコピー")
+  "座標をチャットに送信")
   ClientRegistry.registerKeyBinding(coordinateKeyBinding)
 
   @SubscribeEvent

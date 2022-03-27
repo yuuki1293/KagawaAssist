@@ -1,4 +1,4 @@
-package com.staticallytyped.kagawaassist.coordinate.f3
+package com.staticallytyped.kagawaassist.f3
 
 import com.mojang.blaze3d.matrix.MatrixStack
 
