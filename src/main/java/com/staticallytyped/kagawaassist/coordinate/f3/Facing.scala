@@ -4,15 +4,15 @@ import com.mojang.blaze3d.matrix.MatrixStack
 import net.minecraft.client.Minecraft
 
 //NOTE: north 180, south 0, east 270, west 90
-class Facing(column: Int, f3: F3)(implicit matrixStack: MatrixStack) extends AbstractPart(f3) {
+class Facing(column: Int, f3: F3)(implicit matrixStack: MatrixStack) extends AbstractPart(column, f3) {
   override def render(): Unit = {
     implicit val col: Int = column
     val player = Minecraft.getInstance.player
     val facing = player.rotationYaw
     val text = s"facing: "
     val valueUS = getUS(facing)
-    drawText.draw(text, f3.textColor)
-    drawText.draw(valueUS, f3.valueColor)
+    drawText(text, f3.textColor)
+    drawText(valueUS, f3.valueColor)
   }
 
   def getUS(facing: Float): String = {

@@ -4,7 +4,7 @@ import com.mojang.blaze3d.matrix.MatrixStack
 import net.minecraft.client.Minecraft
 import net.minecraft.util.math.BlockPos
 
-class Coordinate(column:Int, f3: F3)(implicit matrixStack: MatrixStack) extends AbstractPart(f3) {
+class Coordinate(column:Int, f3: F3)(implicit matrixStack: MatrixStack) extends AbstractPart(column, f3) {
   override def render(): Unit = {
     implicit val col: Int = column
     val player: BlockPos = Minecraft.getInstance.player.getPosition
@@ -15,11 +15,11 @@ class Coordinate(column:Int, f3: F3)(implicit matrixStack: MatrixStack) extends 
     val y = player.getY.toString + " "
     val z = player.getZ.toString
 
-    drawText.draw(textX, f3.textColor)
-    drawText.draw(x, f3.valueColor)
-    drawText.draw(textY, f3.textColor)
-    drawText.draw(y, f3.valueColor)
-    drawText.draw(textZ, f3.textColor)
-    drawText.draw(z, f3.valueColor)
+    drawText(textX, f3.textColor)
+    drawText(x, f3.valueColor)
+    drawText(textY, f3.textColor)
+    drawText(y, f3.valueColor)
+    drawText(textZ, f3.textColor)
+    drawText(z, f3.valueColor)
   }
 }
