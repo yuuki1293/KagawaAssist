@@ -15,11 +15,11 @@ object KeyBind {
   val KeyBindingDescription = "Kagawa Assist"
 
   val coordinateKeyBinding = new KeyBinding(
-    KeyBindingDescription,
+    "座標をチャットに送信",
     KeyConflictContext.IN_GAME,
     InputMappings.Type.KEYSYM,
     GLFW.GLFW_KEY_Z,
-  "座標をクリップボードにコピー")
+    KeyBindingDescription)
   ClientRegistry.registerKeyBinding(coordinateKeyBinding)
 
   @SubscribeEvent

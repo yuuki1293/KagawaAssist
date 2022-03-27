@@ -3,20 +3,15 @@ package com.staticallytyped.kagawaassist.coordinate
 import net.minecraft.client.Minecraft
 import org.apache.logging.log4j.LogManager
 
-import java.awt.Toolkit
-import java.awt.datatransfer.StringSelection
-
 object Coordinate {
   def onPressKey(): Unit =
     try {
       val player = Minecraft.getInstance().player
       val position = player.getPosition
-      val clipboard = Toolkit.getDefaultToolkit.getSystemClipboard
-      val text = s"${position.getX} ${position.getY} ${position.getZ} in ${player.getEntityWorld.getDimensionType.toString}"
-      clipboard.setContents(new StringSelection(text), null)
+      player.sendChatMessage(s"${position.getX} ${position.getY} ${position.getZ}")
     } catch {
-      case e: java.awt.HeadlessException =>
+      case e : Exception=>
         e.printStackTrace()
-        LogManager.getLogger().info(s"クリップボードへのコピーに失敗しました")
+        LogManager.getLogger().info(s"チャットの送信に失敗したよ")
     }
 }

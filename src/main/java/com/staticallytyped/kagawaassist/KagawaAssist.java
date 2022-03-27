@@ -1,7 +1,6 @@
 package com.staticallytyped.kagawaassist;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.staticallytyped.kagawaassist.coordinate.f3.F3;
+import com.staticallytyped.kagawaassist.f3.F3;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
