@@ -36,6 +36,7 @@ authors="Love, Cheese and small house plants" #optional
 description='''
 香川用mod
 '''
+side="CLIENT"
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.kagawa-assist]] #optional
 # the modid of the dependency

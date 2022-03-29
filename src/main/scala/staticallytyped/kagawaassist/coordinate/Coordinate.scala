@@ -1,4 +1,4 @@
-package com.staticallytyped.kagawaassist.coordinate
+package staticallytyped.kagawaassist.coordinate
 
 import net.minecraft.client.Minecraft
 import org.apache.logging.log4j.LogManager
