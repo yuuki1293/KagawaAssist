@@ -1,4 +1,4 @@
-package com.staticallytyped.kagawaassist.f3
+package staticallytyped.kagawaassist.f3
 
 import com.mojang.blaze3d.matrix.MatrixStack
 import net.minecraft.client.gui.FontRenderer
