@@ -13,14 +13,14 @@ import staticallytyped.kagawaassist.coordinate.Coordinate
 
 @Mod.EventBusSubscriber
 object KeyBind {
-  val KeyBindingDescription = "Kagawa Assist"
+  val KeyBindingCategory = "Kagawa Assist"
 
   val coordinateKeyBinding = new KeyBinding(
     "座標をチャットに送信",
     KeyConflictContext.IN_GAME,
     InputMappings.Type.KEYSYM,
     GLFW.GLFW_KEY_Z,
-    KeyBindingDescription)
+    KeyBindingCategory)
   ClientRegistry.registerKeyBinding(coordinateKeyBinding)
 
   @SubscribeEvent
