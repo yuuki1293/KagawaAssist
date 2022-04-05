@@ -16,7 +16,7 @@ object KeyBind {
   val KeyBindingCategory = "Kagawa Assist"
 
   val coordinateKeyBinding = new KeyBinding(
-    "座標をチャットに送信",
+    "座標をクリップボードにコピー",
     KeyConflictContext.IN_GAME,
     InputMappings.Type.KEYSYM,
     GLFW.GLFW_KEY_Z,
