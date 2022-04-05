@@ -8,7 +8,7 @@ object Coordinate {
     try {
       val player = Minecraft.getInstance().player
       val position = player.getPosition
-      player.sendChatMessage(s"${position.getX} ${position.getY} ${position.getZ}")
+      player.sendChatMessage(s"!${position.getX} ${position.getY} ${position.getZ}")
     } catch {
       case e : Exception=>
         e.printStackTrace()
