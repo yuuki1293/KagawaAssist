@@ -121,7 +121,7 @@ jar {
             "Specification-Vendor": "StaticallyTyped",
             "Specification-Version": "1.1", // We are version 1 of ourselves
             "Implementation-Title": project.name,
-            "Implementation-Version": "${version}",
+            "Implementation-Version": "${archiveVersion}",
             "Implementation-Vendor" :"StaticallyTyped",
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
@@ -135,7 +135,7 @@ jar {
         def jks_file = "KagawaAssist.p12"
 
         def exec_line = "jarsigner -keystore " + jks_file + " -storepass " +
-                passwd + " -keypass " + passwd + " " + jar.archivePath + " " + app_alias
+                passwd + " -keypass " + passwd + " " + jar.archiveFile + " " + app_alias
         print exec_line
         exec_line.execute()
     }
