@@ -129,6 +129,16 @@ jar {
     from {
         configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
     }
+    doLast {
+        def passwd = "password"
+        def app_alias = "kagawaassist"
+        def jks_file = "KagawaAssist.p12"
+
+        def exec_line = "jarsigner -keystore " + jks_file + " -storepass " +
+                passwd + " -keypass " + passwd + " " + jar.archivePath + " " + app_alias
+        print exec_line
+        exec_line.execute()
+    }
 }
 
 // Example configuration to allow publishing using the maven-publish task
