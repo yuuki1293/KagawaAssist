@@ -11,14 +11,22 @@ class Facing(column: Int, f3: F3)(implicit matrixStack: MatrixStack) extends Abs
     val facing = player.rotationYaw
     val text = s"facing: "
     val valueUS = getUS(facing)
+    val valueXY = getXZ(facing)
     drawText(text, f3.textColor)
     drawText(valueUS, f3.valueColor)
+    drawText(" ", f3.textColor)
+    drawText(valueXY, f3.valueColor)
   }
 
-  def getUS(facing: Float): String = {
+  private def trimFacing(facing: Float): Float = {
     val trimFacing = facing % 360
     val unsignedFacing = if (trimFacing < 0) trimFacing + 360 else trimFacing
-    unsignedFacing match {
+    unsignedFacing
+  }
+
+  private def getUS(facing: Float): String = {
+    val trimmed = trimFacing(facing)
+    trimmed match {
       case x if x < 11.25 => "S"
       case x if x < 33.75 => "SSW"
       case x if x < 56.25 => "SW"
@@ -37,5 +45,23 @@ class Facing(column: Int, f3: F3)(implicit matrixStack: MatrixStack) extends Abs
       case x if x < 348.75 => "SSE"
       case _ => "S"
     }
+  }
+
+  private def getXZ(facing: Float): String = {
+    val trimmed = trimFacing(facing)
+    val X = {
+      trimmed match {
+        case x if x < 180 => "X-"
+        case _ => "X+"
+      }
+    }
+    val Z = {
+      trimmed match {
+        case y if y < 90 => "Z+"
+        case y if y < 270 => "Z-"
+        case _ => "Z+"
+      }
+    }
+    X + " " + Z
   }
 }
