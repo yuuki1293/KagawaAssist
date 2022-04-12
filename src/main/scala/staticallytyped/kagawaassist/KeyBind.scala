@@ -8,7 +8,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.client.registry.ClientRegistry
 import net.minecraftforge.fml.common.Mod
 import org.lwjgl.glfw.GLFW
-import staticallytyped.kagawaassist.coordinate.CopyCoordinate
+import staticallytyped.kagawaassist.coordinate.{CopyCoordinate, SendCoordinate}
 
 
 @Mod.EventBusSubscriber
@@ -26,7 +26,7 @@ object KeyBind {
     "座標を送信",
     KeyConflictContext.IN_GAME,
     InputMappings.Type.KEYSYM,
-    GLFW.GLFW_KEY_X,
+    GLFW.GLFW_KEY_V,
     KeyBindingCategory)
 
   registryKeyBindings()
@@ -37,7 +37,10 @@ object KeyBind {
   }
 
   @SubscribeEvent
-  def onKeyInput(event: InputEvent.KeyInputEvent): Unit =
+  def onKeyInput(event: InputEvent.KeyInputEvent): Unit = {
     if (copyCoordinateKeyBinding.isPressed)
       CopyCoordinate.onPressKey()
+    if (sendCoordinateKeyBinding.isPressed)
+      SendCoordinate.onPressKey()
+  }
 }
