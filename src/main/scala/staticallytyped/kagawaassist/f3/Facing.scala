@@ -2,20 +2,23 @@ package staticallytyped.kagawaassist.f3
 
 import com.mojang.blaze3d.matrix.MatrixStack
 import net.minecraft.client.Minecraft
+import staticallytyped.kagawaassist.Config
 
 //NOTE: north 180, south 0, east 270, west 90
 class Facing(column: Int, f3: F3)(implicit matrixStack: MatrixStack) extends AbstractPart(column)(f3) {
   override def render(): Unit = {
-    implicit val col: Int = column
-    val player = Minecraft.getInstance.player
-    val facing = player.rotationYaw
-    val text = s"facing: "
-    val valueUS = getUS(facing)
-    val valueXY = getXZ(facing)
-    drawText(text, f3.textColor)
-    drawText(valueUS, f3.valueColor)
-    drawText(" ", f3.textColor)
-    drawText(valueXY, f3.valueColor)
+    if(Config.displayFacing.get()) {
+      implicit val col: Int = column
+      val player = Minecraft.getInstance.player
+      val facing = player.rotationYaw
+      val text = s"facing: "
+      val valueUS = getUS(facing)
+      val valueXY = getXZ(facing)
+      drawText(text, f3.textColor)
+      drawText(valueUS, f3.valueColor)
+      drawText(" ", f3.textColor)
+      drawText(valueXY, f3.valueColor)
+    }
   }
 
   private def trimFacing(facing: Float): Float = {

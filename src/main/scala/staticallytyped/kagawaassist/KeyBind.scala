@@ -8,23 +8,39 @@ import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.client.registry.ClientRegistry
 import net.minecraftforge.fml.common.Mod
 import org.lwjgl.glfw.GLFW
-import staticallytyped.kagawaassist.coordinate.Coordinate
+import staticallytyped.kagawaassist.coordinate.{CopyCoordinate, SendCoordinate}
 
 
 @Mod.EventBusSubscriber
 object KeyBind {
   val KeyBindingCategory = "Kagawa Assist"
 
-  val coordinateKeyBinding = new KeyBinding(
+  val copyCoordinateKeyBinding = new KeyBinding(
     "座標をクリップボードにコピー",
     KeyConflictContext.IN_GAME,
     InputMappings.Type.KEYSYM,
     GLFW.GLFW_KEY_Z,
     KeyBindingCategory)
-  ClientRegistry.registerKeyBinding(coordinateKeyBinding)
+
+  val sendCoordinateKeyBinding = new KeyBinding(
+    "座標を送信",
+    KeyConflictContext.IN_GAME,
+    InputMappings.Type.KEYSYM,
+    GLFW.GLFW_KEY_V,
+    KeyBindingCategory)
+
+  registryKeyBindings()
+
+  def registryKeyBindings(): Unit = {
+    ClientRegistry.registerKeyBinding(copyCoordinateKeyBinding)
+    ClientRegistry.registerKeyBinding(sendCoordinateKeyBinding)
+  }
 
   @SubscribeEvent
-  def onKeyInput(event: InputEvent.KeyInputEvent): Unit =
-    if (coordinateKeyBinding.isPressed)
-      Coordinate.onPressKey()
+  def onKeyInput(event: InputEvent.KeyInputEvent): Unit = {
+    if (copyCoordinateKeyBinding.isPressed)
+      CopyCoordinate.onPressKey()
+    if (sendCoordinateKeyBinding.isPressed)
+      SendCoordinate.onPressKey()
+  }
 }
