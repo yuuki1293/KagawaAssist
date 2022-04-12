@@ -8,7 +8,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.client.registry.ClientRegistry
 import net.minecraftforge.fml.common.Mod
 import org.lwjgl.glfw.GLFW
-import staticallytyped.kagawaassist.coordinate.Coordinate
+import staticallytyped.kagawaassist.coordinate.CopyCoordinate
 
 
 @Mod.EventBusSubscriber
@@ -39,5 +39,5 @@ object KeyBind {
   @SubscribeEvent
   def onKeyInput(event: InputEvent.KeyInputEvent): Unit =
     if (copyCoordinateKeyBinding.isPressed)
-      Coordinate.onPressKey()
+      CopyCoordinate.onPressKey()
 }
