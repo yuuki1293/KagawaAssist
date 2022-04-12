@@ -4,7 +4,7 @@ import net.minecraft.client.Minecraft
 import org.apache.logging.log4j.LogManager
 import net.minecraft.client.ClipboardHelper
 
-object Coordinate {
+object CopyCoordinate {
   def onPressKey(): Unit =
     try {
       val player = Minecraft.getInstance().player
