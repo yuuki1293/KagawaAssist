@@ -15,16 +15,29 @@ import staticallytyped.kagawaassist.coordinate.Coordinate
 object KeyBind {
   val KeyBindingCategory = "Kagawa Assist"
 
-  val coordinateKeyBinding = new KeyBinding(
+  val copyCoordinateKeyBinding = new KeyBinding(
     "座標をクリップボードにコピー",
     KeyConflictContext.IN_GAME,
     InputMappings.Type.KEYSYM,
     GLFW.GLFW_KEY_Z,
     KeyBindingCategory)
-  ClientRegistry.registerKeyBinding(coordinateKeyBinding)
+
+  val sendCoordinateKeyBinding = new KeyBinding(
+    "座標を送信",
+    KeyConflictContext.IN_GAME,
+    InputMappings.Type.KEYSYM,
+    GLFW.GLFW_KEY_X,
+    KeyBindingCategory)
+
+  registryKeyBindings()
+
+  def registryKeyBindings(): Unit = {
+    ClientRegistry.registerKeyBinding(copyCoordinateKeyBinding)
+    ClientRegistry.registerKeyBinding(sendCoordinateKeyBinding)
+  }
 
   @SubscribeEvent
   def onKeyInput(event: InputEvent.KeyInputEvent): Unit =
-    if (coordinateKeyBinding.isPressed)
+    if (copyCoordinateKeyBinding.isPressed)
       Coordinate.onPressKey()
 }
