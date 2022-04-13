@@ -19,17 +19,12 @@ public class KagawaAssist {
     public static final Logger LOGGER = LogManager.getLogger();
 
     public KagawaAssist() {
-        // Register the setup method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.spec(), "KagawaAssist.toml");
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-    }
-
-    private void setup(final FMLCommonSetupEvent event) {
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
