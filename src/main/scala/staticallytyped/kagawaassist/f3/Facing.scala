@@ -7,7 +7,7 @@ import staticallytyped.kagawaassist.Config
 //NOTE: north 180, south 0, east 270, west 90
 class Facing(column: Int, f3: F3)(implicit matrixStack: MatrixStack) extends AbstractPart(column)(f3) {
   override def render(): Unit = {
-    if(Config.displayFacing.get()) {
+    if (Config.displayFacing.get()) {
       implicit val col: Int = column
       val player = Minecraft.getInstance.player
       val facing = player.rotationYaw

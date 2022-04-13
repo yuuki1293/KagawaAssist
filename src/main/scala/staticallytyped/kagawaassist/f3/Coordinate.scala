@@ -5,9 +5,9 @@ import net.minecraft.client.Minecraft
 import net.minecraft.util.math.BlockPos
 import staticallytyped.kagawaassist.Config
 
-class Coordinate(column:Int, f3: F3)(implicit matrixStack: MatrixStack) extends AbstractPart(column)(f3) {
+class Coordinate(column: Int, f3: F3)(implicit matrixStack: MatrixStack) extends AbstractPart(column)(f3) {
   override def render(): Unit = {
-    if(Config.displayCoordinates.get()) {
+    if (Config.displayCoordinates.get()) {
       implicit val col: Int = column
       val player: BlockPos = Minecraft.getInstance.player.getPosition
       val textX = s"x: "

@@ -14,7 +14,7 @@ object CopyCoordinate {
       val window = Minecraft.getInstance().getMainWindow.getHandle
       clipboard.setClipboardString(window, text)
     } catch {
-      case e : Exception=>
+      case e: Exception =>
         e.printStackTrace()
         LogManager.getLogger().info(s"コピーに失敗したよ")
     }

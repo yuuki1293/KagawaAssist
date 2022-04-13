@@ -13,8 +13,7 @@ import staticallytyped.kagawaassist.f3.F3;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(KagawaAssist.MODID)
-public class KagawaAssist
-{
+public class KagawaAssist {
     public static final String MODID = "kagawa-assist";
     // Directly reference a log4j logger.
     public static final Logger LOGGER = LogManager.getLogger();
@@ -25,13 +24,12 @@ public class KagawaAssist
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT,Config.spec(),"KagawaAssist.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.spec(), "KagawaAssist.toml");
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    private void setup(final FMLCommonSetupEvent event)
-    {
+    private void setup(final FMLCommonSetupEvent event) {
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
