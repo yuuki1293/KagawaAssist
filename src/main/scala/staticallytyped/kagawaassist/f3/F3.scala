@@ -4,6 +4,7 @@ import com.mojang.blaze3d.matrix.MatrixStack
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.FontRenderer
 import net.minecraftforge.client.event.RenderGameOverlayEvent
+import net.minecraftforge.common.ForgeConfigSpec
 import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.common.Mod
 import staticallytyped.kagawaassist.Config
@@ -12,8 +13,8 @@ import staticallytyped.kagawaassist.Config
 class F3() {
 
   val fontRenderer: FontRenderer = Minecraft.getInstance.fontRenderer
-  val textColor: Int = Config.textColor.get()
-  val valueColor: Int = Config.valueColor.get()
+  val textColor: ForgeConfigSpec.ConfigValue[Int] = Config.textColor
+  val valueColor: ForgeConfigSpec.ConfigValue[Int] = Config.valueColor
 
   @SubscribeEvent
   def render(event: RenderGameOverlayEvent): Unit = {

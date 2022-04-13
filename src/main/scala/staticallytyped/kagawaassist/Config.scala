@@ -1,7 +1,9 @@
 package staticallytyped.kagawaassist
 
+import net.minecraftforge.client.event.TextureStitchEvent
 import net.minecraftforge.common.ForgeConfigSpec
 import net.minecraftforge.common.ForgeConfigSpec.{Builder, ConfigValue}
+import net.minecraftforge.eventbus.api.SubscribeEvent
 
 object Config {
   val builder = new Builder()
@@ -15,6 +17,8 @@ object Config {
     builder
       .comment("値の色","default: 0xffffff")
       .define("value color", 0xffffff)
+
+  builder.push("display toggle")
 
   val displayCoordinates: ForgeConfigSpec.BooleanValue =
     builder
@@ -34,7 +38,9 @@ object Config {
   val displayTime: ForgeConfigSpec.BooleanValue =
     builder
       .comment("現在時刻を表示するか","default: true")
-      .define("display direction", true)
+      .define("display time", true)
+
+  builder.pop()
 
   val timePattern: ConfigValue[String] =
     builder
