@@ -15,14 +15,16 @@ class F3() {
   val fontRenderer: FontRenderer = Minecraft.getInstance.fontRenderer
   val textColor: ForgeConfigSpec.ConfigValue[Int] = Config.textColor
   val valueColor: ForgeConfigSpec.ConfigValue[Int] = Config.valueColor
+  var drawText = new DrawText(fontRenderer)
 
   @SubscribeEvent
   def render(event: RenderGameOverlayEvent): Unit = {
     if (event.getType == RenderGameOverlayEvent.ElementType.TEXT) {
       implicit val matrixStack: MatrixStack = event.getMatrixStack
-      new Coordinate(0, this).render()
-      new Facing(1, this).render()
-      new Time(2, this).render()
+      drawText = new DrawText(fontRenderer)
+      new Coordinate(this).render()
+      new Facing(this).render()
+      new Time(this).render()
     }
   }
 }

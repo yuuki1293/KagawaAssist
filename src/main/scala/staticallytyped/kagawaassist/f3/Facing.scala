@@ -5,19 +5,27 @@ import net.minecraft.client.Minecraft
 import staticallytyped.kagawaassist.Config
 
 //NOTE: north 180, south 0, east 270, west 90
-class Facing(column: Int, f3: F3)(implicit matrixStack: MatrixStack) extends AbstractPart(column)(f3) {
+class Facing(f3: F3)(implicit matrixStack: MatrixStack) extends AbstractPart(f3) {
   override def render(): Unit = {
-    if (Config.displayFacing.get()) {
-      implicit val col: Int = column
-      val player = Minecraft.getInstance.player
-      val facing = player.rotationYaw
-      val text = s"facing: "
+    if (!Config.displayFacing.get() || !Config.displayDirection.get()) cancel = true
+    if (cancel) return
+
+    val text = s"facing: "
+    f3.drawText.newLine()
+    draw(text, f3.textColor)
+
+    val player = Minecraft.getInstance.player
+    val facing = player.rotationYaw
+
+    if(Config.displayFacing.get()) {
       val valueUS = getUS(facing)
+      draw(valueUS, f3.valueColor)
+      draw(" ", f3.textColor)
+    }
+
+    if(Config.displayDirection.get()) {
       val valueXY = getXZ(facing)
-      drawText(text, f3.textColor)
-      drawText(valueUS, f3.valueColor)
-      drawText(" ", f3.textColor)
-      drawText(valueXY, f3.valueColor)
+      draw(valueXY, f3.valueColor)
     }
   }
 
