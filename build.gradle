@@ -17,7 +17,7 @@ version = '1.4'
 group = 'com.staticallytyped.kagawaassist' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'KagawaAssist'
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 8 to end users, so your mod should target Java 8.
+java.toolchain.languageVersion = JavaLanguageVersion.of(17) // Mojang ships Java 8 to end users, so your mod should target Java 8.
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
@@ -30,6 +30,8 @@ minecraft {
             property 'forge.logging.markers', 'REGISTRIES'
 
             property 'forge.logging.console.level', 'debug'
+
+            property 'forge.enabledGameTestNamespaces', 'kagawaassist'
 
             mods {
                 examplemod {
@@ -53,6 +55,8 @@ minecraft {
             // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
             property 'forge.logging.console.level', 'debug'
 
+            property 'forge.enabledGameTestNamespaces', 'kagawaassist'
+
             mods {
                 examplemod {
                     source sourceSets.main
@@ -65,6 +69,31 @@ minecraft {
 
             // Recommended logging data for a userdev environment
             // The markers can be changed as needed.
+            // "SCAN": For mods scan.
+            // "REGISTRIES": For firing of registry events.
+            // "REGISTRYDUMP": For getting the contents of all registries.
+            property 'forge.logging.markers', 'REGISTRIES'
+
+            // Recommended logging level for the console
+            // You can set various levels here.
+            // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
+            property 'forge.logging.console.level', 'debug'
+
+            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
+            property 'forge.enabledGameTestNamespaces', 'examplemod'
+
+            mods {
+                examplemod {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+
+            // Recommended logging data for a userdev environment
+            // The markers can be added/remove as needed separated by commas.
             // "SCAN": For mods scan.
             // "REGISTRIES": For firing of registry events.
             // "REGISTRYDUMP": For getting the contents of all registries.
@@ -105,9 +134,8 @@ configurations {
     extraLibs
 }
 
-
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.5-36.2.20'
+    minecraft 'net.minecraftforge:forge:1.18.1-39.1.0'
 
     implementation 'org.scala-lang:scala-library:2.13.8'
     extraLibs 'org.scala-lang:scala-library:2.13.8'
@@ -119,10 +147,10 @@ jar {
         attributes([
             "Specification-Title": "KagawaAssist",
             "Specification-Vendor": "StaticallyTyped",
-            "Specification-Version": "1.1", // We are version 1 of ourselves
+            "Specification-Version": "1.4", // We are version 1 of ourselves
             "Implementation-Title": project.name,
-            "Implementation-Version": "${archiveVersion}",
-            "Implementation-Vendor" :"StaticallyTyped",
+            "Implementation-Version": project.jar.archiveVersion,
+            "Implementation-Vendor" : "StaticallyTyped",
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
