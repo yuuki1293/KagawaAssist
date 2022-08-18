@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[36,)"
+loaderVersion="[39,)"
 license="All rights reserved"
 [[mods]]
 modId="kagawa-assist"
@@ -15,12 +15,12 @@ side="CLIENT"
 [[dependencies.kagawa-assist]]
 modId="forge"
 mandatory=true
-versionRange="[36,)"
+versionRange="[39,)"
 ordering="NONE"
 side="BOTH"
 [[dependencies.kagawa-assist]]
 modId="minecraft"
 mandatory=true
-versionRange="[1.16.5,1.17)"
+versionRange="[1.18.1,1.19)"
 ordering="NONE"
 side="BOTH"
