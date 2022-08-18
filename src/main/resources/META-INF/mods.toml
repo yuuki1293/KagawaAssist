@@ -2,7 +2,7 @@ modLoader="javafml"
 loaderVersion="[39,)"
 license="All rights reserved"
 [[mods]]
-modId="kagawa-assist"
+modId="kagawaassist"
 version="${file.jarVersion}"
 displayName="KagawaAssist"
 logoFile="KagawaAssist.png"
@@ -12,13 +12,13 @@ description='''
 香川用mod
 '''
 side="CLIENT"
-[[dependencies.kagawa-assist]]
+[[dependencies.kagawaassist]]
 modId="forge"
 mandatory=true
 versionRange="[39,)"
 ordering="NONE"
 side="BOTH"
-[[dependencies.kagawa-assist]]
+[[dependencies.kagawaassist]]
 modId="minecraft"
 mandatory=true
 versionRange="[1.18.1,1.19)"

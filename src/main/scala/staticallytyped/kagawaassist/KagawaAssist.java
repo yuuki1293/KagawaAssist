@@ -13,7 +13,7 @@ import staticallytyped.kagawaassist.f3.F3;
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(KagawaAssist.MODID)
 public class KagawaAssist {
-    public static final String MODID = "kagawa-assist";
+    public static final String MODID = "kagawaassist";
     // Directly reference a log4j logger.
     public static final Logger LOGGER = LogManager.getLogger();
 
