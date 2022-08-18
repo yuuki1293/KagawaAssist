@@ -1,18 +1,17 @@
 package staticallytyped.kagawaassist.coordinate
 
+import com.mojang.blaze3d.platform.ClipboardManager
 import net.minecraft.client.Minecraft
 import org.apache.logging.log4j.LogManager
-import net.minecraft.client.ClipboardHelper
 
 object CopyCoordinate {
   def onPressKey(): Unit =
     try {
       val player = Minecraft.getInstance().player
-      val position = player.getPosition
-      val clipboard = new ClipboardHelper()
-      val text = s"${position.getX} ${position.getY} ${position.getZ}"
-      val window = Minecraft.getInstance().getMainWindow.getHandle
-      clipboard.setClipboardString(window, text)
+      val clipboard = new ClipboardManager()
+      val text = s"${player.getX()} ${player.getY()} ${player.getZ()}"
+      val window = Minecraft.getInstance().getWindow.getWindow
+      clipboard.setClipboard(window, text)
     } catch {
       case e: Exception =>
         e.printStackTrace()

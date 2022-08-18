@@ -1,16 +1,15 @@
 package staticallytyped.kagawaassist.f3
 
-import com.mojang.blaze3d.matrix.MatrixStack
+import com.mojang.blaze3d.vertex.PoseStack
 import net.minecraft.client.Minecraft
-import net.minecraft.util.math.BlockPos
 import staticallytyped.kagawaassist.Config
 
-class Coordinate(f3: F3)(implicit matrixStack: MatrixStack) extends AbstractPart(f3) {
+class Coordinate(f3: F3)(implicit poseStack: PoseStack) extends AbstractPart(f3) {
   override def render(): Unit = {
     if (!Config.displayCoordinates.get()) cancel = true
     if (cancel) return
 
-    val player: BlockPos = Minecraft.getInstance.player.getPosition
+    val player = Minecraft.getInstance().player
     val textX = s"x: "
     val textY = s"y: "
     val textZ = s"z: "

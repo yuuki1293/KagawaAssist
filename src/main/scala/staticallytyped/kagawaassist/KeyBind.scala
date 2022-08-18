@@ -1,46 +1,43 @@
 package staticallytyped.kagawaassist
 
-import net.minecraft.client.settings.KeyBinding
-import net.minecraft.client.util.InputMappings
+import com.mojang.blaze3d.platform.InputConstants
+import net.minecraft.client.KeyMapping
+import net.minecraftforge.client.ClientRegistry
 import net.minecraftforge.client.event.InputEvent
 import net.minecraftforge.client.settings.KeyConflictContext
 import net.minecraftforge.eventbus.api.SubscribeEvent
-import net.minecraftforge.fml.client.registry.ClientRegistry
 import net.minecraftforge.fml.common.Mod
-import org.lwjgl.glfw.GLFW
 import staticallytyped.kagawaassist.coordinate.{CopyCoordinate, SendCoordinate}
 
 
 @Mod.EventBusSubscriber
 object KeyBind {
-  val KeyBindingCategory = "Kagawa Assist"
+  val KeyMappingCategory = "Kagawa Assist"
 
-  val copyCoordinateKeyBinding = new KeyBinding(
+  val copyCoordinateKeyMapping = new KeyMapping(
     "座標をクリップボードにコピー",
     KeyConflictContext.IN_GAME,
-    InputMappings.Type.KEYSYM,
-    GLFW.GLFW_KEY_Z,
-    KeyBindingCategory)
+    InputConstants.getKey("Z"),
+    KeyMappingCategory)
 
-  val sendCoordinateKeyBinding = new KeyBinding(
+  val sendCoordinateKeyMapping = new KeyMapping(
     "座標を送信",
     KeyConflictContext.IN_GAME,
-    InputMappings.Type.KEYSYM,
-    GLFW.GLFW_KEY_V,
-    KeyBindingCategory)
+    InputConstants.getKey("V"),
+    KeyMappingCategory)
 
   registryKeyBindings()
 
   def registryKeyBindings(): Unit = {
-    ClientRegistry.registerKeyBinding(copyCoordinateKeyBinding)
-    ClientRegistry.registerKeyBinding(sendCoordinateKeyBinding)
+    ClientRegistry.registerKeyBinding(copyCoordinateKeyMapping)
+    ClientRegistry.registerKeyBinding(sendCoordinateKeyMapping)
   }
 
   @SubscribeEvent
   def onKeyInput(event: InputEvent.KeyInputEvent): Unit = {
-    if (copyCoordinateKeyBinding.isPressed)
+    if (copyCoordinateKeyMapping.isDown)
       CopyCoordinate.onPressKey()
-    if (sendCoordinateKeyBinding.isPressed)
+    if (sendCoordinateKeyMapping.isDown)
       SendCoordinate.onPressKey()
   }
 }

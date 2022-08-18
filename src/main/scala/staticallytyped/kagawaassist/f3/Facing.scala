@@ -1,11 +1,11 @@
 package staticallytyped.kagawaassist.f3
 
-import com.mojang.blaze3d.matrix.MatrixStack
+import com.mojang.blaze3d.vertex.PoseStack
 import net.minecraft.client.Minecraft
 import staticallytyped.kagawaassist.Config
 
 //NOTE: north 180, south 0, east 270, west 90
-class Facing(f3: F3)(implicit matrixStack: MatrixStack) extends AbstractPart(f3) {
+class Facing(f3: F3)(implicit poseStack: PoseStack) extends AbstractPart(f3) {
   override def render(): Unit = {
     if (!Config.displayFacing.get() || !Config.displayDirection.get()) cancel = true
     if (cancel) return
@@ -15,7 +15,7 @@ class Facing(f3: F3)(implicit matrixStack: MatrixStack) extends AbstractPart(f3)
     draw(text, f3.textColor)
 
     val player = Minecraft.getInstance.player
-    val facing = player.rotationYaw
+    val facing = player.getRotationVector.x
 
     if(Config.displayFacing.get()) {
       val valueUS = getUS(facing)
