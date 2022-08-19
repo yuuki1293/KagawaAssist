@@ -11,7 +11,7 @@ class DrawText(fontRenderer: Font) {
   def draw(text: String, color: ConfigValue[Int])(implicit poseStack: PoseStack): Unit = {
     val dx = fontRenderer.width(beforeText)
     val dy = fontRenderer.lineHeight + 1
-    fontRenderer.drawShadow(poseStack, text, 2 + dx, 2 + dy * column, color.get())
+    fontRenderer.drawShadow(poseStack, text, (2 + dx).toFloat, (2 + dy * column).toFloat, color.get())
     beforeText += text
   }
 

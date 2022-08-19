@@ -16,14 +16,12 @@ object KeyBind {
 
   val copyCoordinateKeyMapping = new KeyMapping(
     "座標をクリップボードにコピー",
-    KeyConflictContext.IN_GAME,
-    InputConstants.getKey("Z"),
+    InputConstants.KEY_Z,
     KeyMappingCategory)
 
   val sendCoordinateKeyMapping = new KeyMapping(
     "座標を送信",
-    KeyConflictContext.IN_GAME,
-    InputConstants.getKey("V"),
+    InputConstants.KEY_V,
     KeyMappingCategory)
 
   registryKeyBindings()

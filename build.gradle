@@ -134,14 +134,34 @@ sourceSets {
 }
 
 configurations {
-    extraLibs
+}
+
+repositories {
+    maven {
+        name = "Azure-SLP"
+        url = uri("https://pkgs.dev.azure.com/Kotori316/minecraft/_packaging/mods/maven/v1")
+        content {
+            it.includeModule("com.kotori316", "ScalableCatsForce".toLowerCase())
+            it.includeModule("org.typelevel", "cats-core_2.13")
+            it.includeModule("org.typelevel", "cats-kernel_2.13")
+        }
+    }
 }
 
 dependencies {
+    def scala_version = "2.13.8"
+    def scala_major = "2.13"
+    // Change forge and minecraft version.
     minecraft 'net.minecraftforge:forge:1.18.1-39.1.0'
+    compileOnly(group: 'org.scala-lang', name: 'scala-library', version: scala_version)
+    // Add if you need this library. I use a modified version of Cats to avoid some module errors.
+    compileOnly(group: 'org.typelevel', name: "cats-core_${scala_major}", version: '2.8.1-kotori')
 
-    implementation 'org.scala-lang:scala-library:2.13.8'
-    extraLibs 'org.scala-lang:scala-library:2.13.8'
+    // The language loader. You can put the jar to the mods dir instead of declaring in `build.gradle`.
+    // This file is needed as the scala library will not be loaded in dev environment due to change of classpath by Forge.
+    runtimeOnly(group: "com.kotori316", name: "ScalableCatsForce".toLowerCase(), version: "2.13.8-build-4", classifier: "with-library") {
+        transitive(false)
+    }
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
@@ -174,7 +194,7 @@ jar {
 
 // Example configuration to allow publishing using the maven-publish task
 // This is the preferred method to reobfuscate your jar file
-jar.finalizedBy('reobfJar') 
+jar.finalizedBy('reobfJar')
 // However if you are in a multi-project build, dev time needs unobfed jar files, so you can delay the obfuscation until publishing by doing
 //publish.dependsOn('reobfJar')
 
@@ -191,6 +211,3 @@ publishing {
     }
 }
 
-repositories {
-    mavenCentral()
-}
