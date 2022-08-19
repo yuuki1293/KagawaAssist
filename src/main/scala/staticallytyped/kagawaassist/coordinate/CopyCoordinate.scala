@@ -9,7 +9,7 @@ object CopyCoordinate {
     try {
       val player = Minecraft.getInstance().player
       val clipboard = new ClipboardManager()
-      val text = s"${player.getX()} ${player.getY()} ${player.getZ()}"
+      val text = s"${player.getX.toInt} ${player.getY.toInt} ${player.getZ.toInt}"
       val window = Minecraft.getInstance().getWindow.getWindow
       clipboard.setClipboard(window, text)
     } catch {
