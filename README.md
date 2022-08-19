@@ -3,6 +3,9 @@
 香川用mod  
 [download](https://github.com/yuuki1293/KagawaAssist/releases/)
 
+## 前提mod
+[ScalableCatsForce](https://www.curseforge.com/minecraft/mc-mods/scalable-cats-force/files/3759354)
+
 ## 機能
 - 座標の表示
 - 向きを16方位で表示
