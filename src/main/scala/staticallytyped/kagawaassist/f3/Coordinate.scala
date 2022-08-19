@@ -13,9 +13,9 @@ class Coordinate(f3: F3)(implicit poseStack: PoseStack) extends AbstractPart(f3)
     val textX = s"x: "
     val textY = s"y: "
     val textZ = s"z: "
-    val x = player.getX.toString + " "
-    val y = player.getY.toString + " "
-    val z = player.getZ.toString
+    val x = player.getX.toInt.toString + " "
+    val y = player.getY.toInt.toString + " "
+    val z = player.getZ.toInt.toString
 
     f3.drawText.newLine()
     draw(textX, f3.textColor)
