@@ -15,7 +15,7 @@ class Facing(f3: F3)(implicit poseStack: PoseStack) extends AbstractPart(f3) {
     draw(text, f3.textColor)
 
     val player = Minecraft.getInstance.player
-    val facing = player.getRotationVector.x
+    val facing = player.getRotationVector.y
 
     if(Config.displayFacing.get()) {
       val valueUS = getUS(facing)
