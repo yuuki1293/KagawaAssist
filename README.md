@@ -1,6 +1,6 @@
 # KagawaAssist
 
-香川用mod  
+香川と1day用mod  
 [download](https://github.com/yuuki1293/KagawaAssist/releases/)
 
 ## 前提mod
