@@ -20,6 +20,7 @@ public class KagawaAssist {
     public KagawaAssist() {
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(KeyBind::registerKeyMapping);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.spec(), "KagawaAssist.toml");
         // Register ourselves for server and other game events we are interested in
