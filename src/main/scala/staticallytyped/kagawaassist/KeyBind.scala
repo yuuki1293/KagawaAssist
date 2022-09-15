@@ -1,7 +1,9 @@
 package staticallytyped.kagawaassist
 
+import com.mojang.blaze3d.platform.InputConstants
 import com.mojang.blaze3d.platform.InputConstants._
 import net.minecraftforge.client.event.{InputEvent, RegisterKeyMappingsEvent}
+import net.minecraftforge.client.settings.{KeyConflictContext, KeyModifier}
 import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.common.Mod
 import staticallytyped.kagawaassist.coordinate.{CopyCoordinate, SendCoordinate}
@@ -16,14 +18,15 @@ object KeyBind {
   )
 
   def newKeyMap(name: String, key: Int, f: Unit => _)(implicit category: String): KagawaAssistKeyMapping = {
-    new KagawaAssistKeyMapping(name, key, f)(category)
+    new KagawaAssistKeyMapping(name, KeyConflictContext.IN_GAME, KeyModifier.NONE, InputConstants.Type.KEYSYM.getOrCreate(key), f)(category)
   }
 
   @SubscribeEvent
   def onKeyInput(event: InputEvent.Key): Unit = {
     keyMappings.foreach(keyMapping => {
-      if (event.getKey == keyMapping.getKey.getValue)
-        keyMapping.f()
+      if (keyMapping.consumeClick()) {
+        keyMapping.f(())
+      }
     })
   }
 
