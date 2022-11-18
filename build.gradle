@@ -15,6 +15,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'scala'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
+apply from: "https://moddingtutorials.org/applesilicon.gradle"
 
 version = '1.18.1-1.4'
 group = 'com.staticallytyped.kagawaassist' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
