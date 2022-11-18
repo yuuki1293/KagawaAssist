@@ -150,8 +150,6 @@ repositories {
 }
 
 dependencies {
-    def scala_version = "2.13.8"
-    def scala_major = "2.13"
     // Change forge and minecraft version.
     minecraft 'net.minecraftforge:forge:1.18.1-39.1.0'
     compileOnly(group: 'org.scala-lang', name: 'scala-library', version: scala_version)
