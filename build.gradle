@@ -12,6 +12,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'scala'
+apply from: "https://moddingtutorials.org/applesilicon.gradle"
 
 version = '1.4'
 group = 'com.staticallytyped.kagawaassist' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
