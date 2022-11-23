@@ -108,7 +108,7 @@ configurations {
 
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.5-36.2.20'
+    minecraft 'net.minecraftforge:forge:1.16.5-36.2.34'
 
     implementation 'org.scala-lang:scala-library:2.13.8'
     extraLibs 'org.scala-lang:scala-library:2.13.8'
