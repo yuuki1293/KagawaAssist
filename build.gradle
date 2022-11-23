@@ -7,6 +7,7 @@ buildscript {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
     }
 }
+
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
@@ -106,12 +107,11 @@ configurations {
     extraLibs
 }
 
-
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.34'
 
-    implementation 'org.scala-lang:scala-library:2.13.8'
-    extraLibs 'org.scala-lang:scala-library:2.13.8'
+    implementation 'org.scala-lang:scala-library:2.13.10'
+    extraLibs 'org.scala-lang:scala-library:2.13.10'
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
