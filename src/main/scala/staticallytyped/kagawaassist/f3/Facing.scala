@@ -3,30 +3,34 @@ package staticallytyped.kagawaassist.f3
 import com.mojang.blaze3d.matrix.MatrixStack
 import net.minecraft.client.Minecraft
 import staticallytyped.kagawaassist.Config
+import staticallytyped.kagawaassist.monad.Reader._
 
 //NOTE: north 180, south 0, east 270, west 90
-class Facing(f3: F3)(implicit matrixStack: MatrixStack) extends AbstractPart(f3) {
-  override def render(): Unit = {
+object Facing extends Part {
+  override def render(xy: (Int, Int))(matrixStack: MatrixStack): (Int, Int) = {
     if (!Config.displayFacing.get() || !Config.displayDirection.get()) cancel = true
-    if (cancel) return
+    if (cancel) return xy
 
     val text = s"facing: "
-    f3.drawText.newLine()
-    draw(text, f3.textColor)
+
+    val f1 = DrawText _(xy)
+      .map(DrawText.draw(text, F3.textColor))
 
     val player = Minecraft.getInstance.player
     val facing = player.rotationYaw
 
-    if(Config.displayFacing.get()) {
+    val f2 = if (Config.displayFacing.get()) {
       val valueUS = getUS(facing)
-      draw(valueUS, f3.valueColor)
-      draw(" ", f3.textColor)
-    }
+      f1.map(DrawText.draw(valueUS, F3.valueColor))
+        .map(DrawText.draw(" ", F3.textColor))
+    } else f1
 
-    if(Config.displayDirection.get()) {
+    val f3 = if (Config.displayDirection.get()) {
       val valueXY = getXZ(facing)
-      draw(valueXY, f3.valueColor)
-    }
+      f2.map(DrawText.draw(valueXY, F3.valueColor))
+    } else f2
+
+    f3.apply(matrixStack)
   }
 
   private def trimFacing(facing: Float): Float = {

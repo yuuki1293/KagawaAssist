@@ -1,22 +1,31 @@
 package staticallytyped.kagawaassist.f3
 
 import com.mojang.blaze3d.matrix.MatrixStack
-import net.minecraft.client.gui.FontRenderer
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue
 
-class DrawText(fontRenderer: FontRenderer) {
-  private var beforeText: String = ""
-  private var column = -1
+object DrawText {
+  def draw(text: String, color: ConfigValue[Int])(xy: (Int, Int))(matrixStack: MatrixStack): (Int, Int) = {
+    val (x, y) = xy
 
-  def draw(text: String, color: ConfigValue[Int])(implicit matrixStack: MatrixStack): Unit = {
-    val dx = fontRenderer.getStringWidth(beforeText)
-    val dy = fontRenderer.FONT_HEIGHT + 1
-    fontRenderer.drawStringWithShadow(matrixStack, text, 2 + dx, 2 + dy * column, color.get())
-    beforeText += text
+    F3.fontRenderer.drawStringWithShadow(
+      matrixStack,
+      text, 2 + x,
+      2 + y,
+      color.get()
+    )
+
+    val dx = F3.fontRenderer.getStringWidth(text)
+    (x + dx, y)
   }
 
-  def newLine(): Unit = {
-    column += 1
-    beforeText = ""
+  def drawln(text: String, color: ConfigValue[Int])(xy: (Int, Int))(matrixStack: MatrixStack): (Int, Int) = {
+    newLine(draw(text, color)(xy)(matrixStack))(matrixStack)
   }
+
+  def newLine(xy: (Int, Int))(matrixStack: MatrixStack): (Int, Int) = {
+    val (x, y) = xy
+    (x, y + F3.fontRenderer.FONT_HEIGHT + 1)
+  }
+
+  def apply(xy: (Int, Int))(matrixStack: MatrixStack): (Int, Int) = xy
 }
