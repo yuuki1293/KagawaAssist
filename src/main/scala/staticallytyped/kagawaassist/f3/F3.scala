@@ -15,10 +15,6 @@ object F3 {
   val textColor: ForgeConfigSpec.ConfigValue[Int] = Config.textColor
   val valueColor: ForgeConfigSpec.ConfigValue[Int] = Config.valueColor
 
-  val parts: List[Part] = List(
-    Coordinate
-  )
-
   @SubscribeEvent
   def render(event: RenderGameOverlayEvent): Unit = {
     if (event.getType == RenderGameOverlayEvent.ElementType.TEXT) {
