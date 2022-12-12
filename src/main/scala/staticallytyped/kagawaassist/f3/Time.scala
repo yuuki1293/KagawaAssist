@@ -14,7 +14,7 @@ object Time extends Part {
 
     val timePattern = Config.timePattern.get()
     val time = LocalTime.now().format(DateTimeFormatter.ofPattern(timePattern))
-    DrawText _(xy)
+    (DrawText.apply _)(xy)
       .map(DrawText.draw("time: ", F3.textColor))
       .map(DrawText.draw(time, F3.valueColor))
       .apply(matrixStack)

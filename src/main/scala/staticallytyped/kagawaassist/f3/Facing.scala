@@ -13,7 +13,7 @@ object Facing extends Part {
 
     val text = s"facing: "
 
-    val f1 = DrawText _(xy)
+    val f1 = (DrawText.apply _)(xy)
       .map(DrawText.draw(text, F3.textColor))
 
     val player = Minecraft.getInstance.player

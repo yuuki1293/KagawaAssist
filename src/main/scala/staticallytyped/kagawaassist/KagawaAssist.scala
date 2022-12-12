@@ -9,7 +9,7 @@ import staticallytyped.kagawaassist.f3.F3
 
 @Mod(KagawaAssist.MODID)
 object KagawaAssist {
-  val MODID = "kagawa-assist"
+  final val MODID = "kagawa-assist"
   val LOGGER: Logger = LogManager.getLogger()
 
   ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.spec, "KagawaAssist.toml")

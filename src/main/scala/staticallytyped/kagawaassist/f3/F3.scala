@@ -18,7 +18,7 @@ object F3 {
   @SubscribeEvent
   def render(event: RenderGameOverlayEvent): Unit = {
     if (event.getType == RenderGameOverlayEvent.ElementType.TEXT) {
-      Coordinate.render _((0, 0))
+      (Coordinate.render _)((0, 0))
         .map(DrawText.newLine)
         .map(Facing.render)
         .map(DrawText.newLine)
