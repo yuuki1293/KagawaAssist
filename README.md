@@ -14,6 +14,7 @@ mc&gt;=1.18.1 [ScalableCatsForce](https://www.curseforge.com/minecraft/mc-mods/s
 - Displays real world time
 - Copy coordinates to clipboard (default: Z)
 - Send coordinates via chat (default: V)
+- Chat filter
 
 ### 日本語
 ## 要約
@@ -23,9 +24,10 @@ mc&gt;=1.18.1 [ScalableCatsForce](https://www.curseforge.com/minecraft/mc-mods/s
 mc&gt;=1.18.1 [ScalableCatsForce](https://www.curseforge.com/minecraft/mc-mods/scalable-cats-force/files/3759354)
 
 ## 機能
-- 座標を表示
-- 方角を16方位で表示
-- X,Z 方向を表示
-- 現実世界の時刻を表示
-- クリップボードに座標をコピー (デフォルト: Z)
-- チャットに座標を送信 (デフォルト: V)
+- 座標の表示
+- 向きを16方位で表示
+- X,Z座標の向きを表示
+- 時刻の表示
+- zキーで座標をクリップボードにコピー
+- vキーで座標をチャットに送信
+- チャットフィルター
