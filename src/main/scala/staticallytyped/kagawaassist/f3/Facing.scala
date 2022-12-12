@@ -5,28 +5,31 @@ import net.minecraft.client.Minecraft
 import staticallytyped.kagawaassist.Config
 
 //NOTE: north 180, south 0, east 270, west 90
-class Facing(f3: F3)(implicit poseStack: PoseStack) extends AbstractPart(f3) {
-  override def render(): Unit = {
+object Facing extends Part {
+  override def render(xy: (Int, Int))(x0: Int, matrixStack: MatrixStack, fontRenderer: FontRenderer): (Int, Int) = {
     if (!Config.displayFacing.get() || !Config.displayDirection.get()) cancel = true
-    if (cancel) return
+    if (cancel) return xy
 
     val text = s"facing: "
-    f3.drawText.newLine()
-    draw(text, f3.textColor)
+
+    val f1 = (DrawText.apply _)(xy)
+      .map(DrawText.draw(text, F3.textColor))
 
     val player = Minecraft.getInstance.player
     val facing = player.getRotationVector.y
 
-    if(Config.displayFacing.get()) {
+    val f2 = if (Config.displayFacing.get()) {
       val valueUS = getUS(facing)
-      draw(valueUS, f3.valueColor)
-      draw(" ", f3.textColor)
-    }
+      f1.map(DrawText.draw(valueUS, F3.valueColor))
+        .map(DrawText.draw(" ", F3.textColor))
+    } else f1
 
-    if(Config.displayDirection.get()) {
+    val f3 = if (Config.displayDirection.get()) {
       val valueXY = getXZ(facing)
-      draw(valueXY, f3.valueColor)
-    }
+      f2.map(DrawText.draw(valueXY, F3.valueColor))
+    } else f2
+
+    f3.apply(x0, matrixStack, fontRenderer)
   }
 
   private def trimFacing(facing: Float): Float = {

@@ -1,20 +1,23 @@
 package staticallytyped.kagawaassist.f3
 
 import com.mojang.blaze3d.vertex.PoseStack
+import net.minecraft.client.gui.FontRenderer
 import staticallytyped.kagawaassist.Config
+import staticallytyped.kagawaassist.monad.Reader._
 
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
-class Time(f3: F3)(implicit poseStack: PoseStack) extends AbstractPart(f3) {
-  override def render(): Unit = {
+object Time extends Part {
+  override def render(xy: (Int, Int))(x0: Int, matrixStack: MatrixStack, fontRenderer: FontRenderer): (Int, Int) = {
     if (!Config.displayTime.get()) cancel = true
-    if (cancel) return
+    if (cancel) return xy
 
     val timePattern = Config.timePattern.get()
     val time = LocalTime.now().format(DateTimeFormatter.ofPattern(timePattern))
-    f3.drawText.newLine()
-    draw("time: ", f3.textColor)
-    draw(time, f3.valueColor)
+    (DrawText.apply _)(xy)
+      .map(DrawText.draw("time: ", F3.textColor))
+      .map(DrawText.draw(time, F3.valueColor))
+      .apply(x0, matrixStack, fontRenderer)
   }
 }
