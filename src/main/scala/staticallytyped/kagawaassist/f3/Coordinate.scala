@@ -5,9 +5,10 @@ import net.minecraft.util.math.BlockPos
 import staticallytyped.kagawaassist.Config
 import staticallytyped.kagawaassist.monad.Reader._
 import com.mojang.blaze3d.matrix.MatrixStack
+import net.minecraft.client.gui.FontRenderer
 
 object Coordinate extends Part {
-  def render(xy: (Int, Int))(matrixStack: MatrixStack): (Int, Int) = {
+  def render(xy: (Int, Int))(mf: (MatrixStack, FontRenderer)): (Int, Int) = {
     if (!Config.displayCoordinates.get()) cancel = true
     if (cancel) return xy
 
@@ -26,6 +27,6 @@ object Coordinate extends Part {
       .map(DrawText.draw(y, F3.valueColor))
       .map(DrawText.draw(textZ, F3.textColor))
       .map(DrawText.draw(z, F3.valueColor))
-      .apply(matrixStack)
+      .apply(mf)
   }
 }

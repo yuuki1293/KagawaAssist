@@ -11,7 +11,6 @@ import staticallytyped.kagawaassist.monad.Reader._
 
 @Mod.EventBusSubscriber
 object F3 {
-  val fontRenderer: FontRenderer = Minecraft.getInstance.fontRenderer
   val textColor: ForgeConfigSpec.ConfigValue[Int] = Config.textColor
   val valueColor: ForgeConfigSpec.ConfigValue[Int] = Config.valueColor
 
@@ -23,7 +22,8 @@ object F3 {
         .map(Facing.render)
         .map(DrawText.newLine)
         .map(Time.render)
+        .apply((event.getMatrixStack,
+          Minecraft.getInstance().fontRenderer))
     }
   }
 }
-
