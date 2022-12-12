@@ -8,6 +8,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext
 import org.apache.logging.log4j.{LogManager, Logger}
 import staticallytyped.kagawaassist.KagawaAssist.doClientStuff
+import staticallytyped.kagawaassist.chat.Chat
 import staticallytyped.kagawaassist.f3.F3
 
 import scala.annotation.unused
@@ -26,5 +27,6 @@ object KagawaAssist {
 
   private def doClientStuff(@unused event: FMLClientSetupEvent): Unit = {
     MinecraftForge.EVENT_BUS.register(F3)
+    MinecraftForge.EVENT_BUS.register(Chat)
   }
 }
