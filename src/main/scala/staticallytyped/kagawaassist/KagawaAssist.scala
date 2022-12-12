@@ -8,12 +8,14 @@ import org.apache.logging.log4j.{LogManager, Logger}
 import staticallytyped.kagawaassist.f3.F3
 
 @Mod(KagawaAssist.MODID)
-object KagawaAssist {
-  final val MODID = "kagawa-assist"
-  val LOGGER: Logger = LogManager.getLogger()
-
+class KagawaAssist {
   ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.spec, "KagawaAssist.toml")
 
   MinecraftForge.EVENT_BUS.register(this)
   MinecraftForge.EVENT_BUS.register(F3)
+}
+
+object KagawaAssist {
+  final val MODID = "kagawa-assist"
+  final val LOGGER: Logger = LogManager.getLogger
 }
