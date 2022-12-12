@@ -22,8 +22,10 @@ object F3 {
         .map(Facing.render)
         .map(DrawText.newLine)
         .map(Time.render)
-        .apply((event.getMatrixStack,
-          Minecraft.getInstance().fontRenderer))
+        .apply(
+          0,
+          event.getMatrixStack,
+          Minecraft.getInstance().fontRenderer)
     }
   }
 }

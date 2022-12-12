@@ -8,9 +8,8 @@ import staticallytyped.kagawaassist.monad.Reader._
 import scala.annotation.unused
 
 object DrawText {
-  def draw(text: String, color: ConfigValue[Int])(xy: (Int, Int))(mf: (MatrixStack, FontRenderer)): (Int, Int) = {
+  def draw(text: String, color: ConfigValue[Int])(xy: (Int, Int))(@unused x0: Int, matrixStack: MatrixStack, fontRenderer: FontRenderer): (Int, Int) = {
     val (x, y) = xy
-    val (matrixStack, fontRenderer) = mf
 
     fontRenderer.drawStringWithShadow(
       matrixStack,
@@ -23,17 +22,16 @@ object DrawText {
     (x + dx, y)
   }
 
-  def drawln(text: String, color: ConfigValue[Int])(xy: (Int, Int))(mf: (MatrixStack, FontRenderer)): (Int, Int) = {
+  def drawln(text: String, color: ConfigValue[Int])(xy: (Int, Int))(x0: Int, matrixStack: MatrixStack, fontRenderer: FontRenderer): (Int, Int) = {
     (draw _)(text, color)(xy)
       .map(newLine)
-      .apply(mf)
+      .apply(x0, matrixStack, fontRenderer)
   }
 
-  def newLine(xy: (Int, Int))(mf: (MatrixStack, FontRenderer)): (Int, Int) = {
-    val (x, y) = xy
-    val (_, fontRenderer) = mf
-    (x, y + fontRenderer.FONT_HEIGHT + 1)
+  def newLine(xy: (Int, Int))(x0: Int, @unused matrixStack: MatrixStack, fontRenderer: FontRenderer): (Int, Int) = {
+    val (_, y) = xy
+    (x0, y + fontRenderer.FONT_HEIGHT + 1)
   }
 
-  def apply(xy: (Int, Int))(@unused mf: (MatrixStack, FontRenderer)): (Int, Int) = xy
+  def apply(xy: (Int, Int))(@unused x0: Int, @unused matrixStack: MatrixStack, @unused fontRenderer: FontRenderer): (Int, Int) = xy
 }

@@ -9,7 +9,7 @@ import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
 object Time extends Part {
-  override def render(xy: (Int, Int))(mf: (MatrixStack, FontRenderer)): (Int, Int) = {
+  override def render(xy: (Int, Int))(x0: Int, matrixStack: MatrixStack, fontRenderer: FontRenderer): (Int, Int) = {
     if (!Config.displayTime.get()) cancel = true
     if (cancel) return xy
 
@@ -18,6 +18,6 @@ object Time extends Part {
     (DrawText.apply _)(xy)
       .map(DrawText.draw("time: ", F3.textColor))
       .map(DrawText.draw(time, F3.valueColor))
-      .apply(mf)
+      .apply(x0, matrixStack, fontRenderer)
   }
 }

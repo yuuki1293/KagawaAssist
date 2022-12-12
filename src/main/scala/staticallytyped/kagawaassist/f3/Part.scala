@@ -6,5 +6,5 @@ import net.minecraft.client.gui.FontRenderer
 trait Part {
   var cancel = false
 
-  def render(xy: (Int, Int))(mf: (MatrixStack, FontRenderer)): (Int, Int)
+  def render(xy: (Int, Int))(x0: Int, matrixStack: MatrixStack, fontRenderer: FontRenderer): (Int, Int)
 }
