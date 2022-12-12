@@ -2,6 +2,7 @@ package staticallytyped.kagawaassist
 
 import net.minecraftforge.common.ForgeConfigSpec
 import net.minecraftforge.common.ForgeConfigSpec.{Builder, ConfigValue}
+import scala.jdk.CollectionConverters._
 
 object Config {
   val builder = new Builder()
@@ -44,6 +45,19 @@ object Config {
     builder
       .comment("時刻表示のパターン", "詳しくはこちらを参照 https://docs.oracle.com/javase/jp/8/docs/api/java/time/format/DateTimeFormatter.html#patterns", "default: HH:mm:ss")
       .define("time pattern", "HH:mm:ss")
+
+  val enableChatFilter: ForgeConfigSpec.BooleanValue =
+    builder
+      .comment("チャットフィルターが有効か", "default: true")
+      .define("enable chat filter", true)
+
+  val chatFilter: ConfigValue[java.util.List[String]] =
+    builder
+      .comment("チャットフィルター")
+      .define("chat filter", List(
+        "現在の時刻ではゲームモードがSURVIVALに変更されます。",
+        "現在の時刻ではゲームモードがSPECTATORに変更されます。"
+      ).asJava)
 
   val spec: ForgeConfigSpec = builder.build()
 }
