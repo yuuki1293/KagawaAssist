@@ -2,11 +2,13 @@ package staticallytyped.kagawaassist.f3
 
 import com.mojang.blaze3d.vertex.PoseStack
 import net.minecraft.client.Minecraft
+import net.minecraft.client.gui.Font
 import staticallytyped.kagawaassist.Config
+import staticallytyped.kagawaassist.monad.Reader._
 
 //NOTE: north 180, south 0, east 270, west 90
 object Facing extends Part {
-  override def render(xy: (Int, Int))(x0: Int, matrixStack: MatrixStack, fontRenderer: FontRenderer): (Int, Int) = {
+  override def render(xy: (Int, Int))(x0: Int, poseStack: PoseStack, font: Font): (Int, Int) = {
     if (!Config.displayFacing.get() || !Config.displayDirection.get()) cancel = true
     if (cancel) return xy
 
@@ -29,7 +31,7 @@ object Facing extends Part {
       f2.map(DrawText.draw(valueXY, F3.valueColor))
     } else f2
 
-    f3.apply(x0, matrixStack, fontRenderer)
+    f3.apply(x0, poseStack, font)
   }
 
   private def trimFacing(facing: Float): Float = {

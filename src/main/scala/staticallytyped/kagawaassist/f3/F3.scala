@@ -1,9 +1,7 @@
 package staticallytyped.kagawaassist.f3
 
-import com.mojang.blaze3d.vertex.PoseStack
 import net.minecraft.client.Minecraft
-import net.minecraft.client.gui.FontRenderer
-import net.minecraftforge.client.event.RenderGameOverlayEvent
+import net.minecraftforge.client.event.RenderGuiOverlayEvent
 import net.minecraftforge.common.ForgeConfigSpec
 import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.common.Mod
@@ -16,17 +14,16 @@ object F3 {
   val valueColor: ForgeConfigSpec.ConfigValue[Int] = Config.valueColor
 
   @SubscribeEvent
-  def render(event: RenderGuiOverlayEvent): Unit = {
-    if (event.getType == RenderGuiOverlayEvent.ElementType.TEXT) {
-      (Coordinate.render _)((0, 0))
-        .map(DrawText.newLine)
-        .map(Facing.render)
-        .map(DrawText.newLine)
-        .map(Time.render)
-        .apply(
-          0,
-          event.getPoseStack,
-          Minecraft.getInstance().font)
-    }
+  def render(event: RenderGuiOverlayEvent.Pre): Unit = {
+    (Coordinate.render _)((0, 0))
+      .map(DrawText.newLine)
+      .map(Facing.render)
+      .map(DrawText.newLine)
+      .map(Time.render)
+      .apply(
+        0,
+        event.getPoseStack,
+        Minecraft.getInstance().font
+      )
   }
 }

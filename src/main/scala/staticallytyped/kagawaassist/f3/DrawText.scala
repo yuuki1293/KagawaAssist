@@ -3,15 +3,14 @@ package staticallytyped.kagawaassist.f3
 import com.mojang.blaze3d.vertex.PoseStack
 import net.minecraft.client.gui.Font
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue
-import staticallytyped.kagawaassist.monad.Reader._
 
 import scala.annotation.unused
 
 object DrawText {
-  def draw(text: String, color: ConfigValue[Int])(xy: (Int, Int))(@unused x0: Int, matrixStack: MatrixStack, fontRenderer: FontRenderer): (Int, Int) = {
+  def draw(text: String, color: ConfigValue[Int])(xy: (Int, Int))(@unused x0: Int, poseStack: PoseStack, font: Font): (Int, Int) = {
     val (x, y) = xy
 
-    fontRenderer.drawShadow(
+    font.drawShadow(
       poseStack,
       text,
       2 + x,
@@ -19,14 +18,14 @@ object DrawText {
       color.get()
     )
 
-    val dx = fontRenderer.getStringWidth(text)
+    val dx = font.width(text)
     (x + dx, y)
   }
 
-  def newLine(xy: (Int, Int))(x0: Int, @unused poseStack: PoseStack, fontRenderer: FontRenderer): (Int, Int) = {
+  def newLine(xy: (Int, Int))(x0: Int, @unused poseStack: PoseStack, font: Font): (Int, Int) = {
     val (_, y) = xy
-    (x0, y + fontRenderer.FONT_HEIGHT + 1)
+    (x0, y + font.lineHeight + 1)
   }
 
-  def apply(xy: (Int, Int))(@unused x0: Int, @unused poseStack: PoseStack, @unused fontRenderer: FontRenderer): (Int, Int) = xy
+  def apply(xy: (Int, Int))(@unused x0: Int, @unused poseStack: PoseStack, @unused font: Font): (Int, Int) = xy
 }

@@ -1,12 +1,16 @@
 package staticallytyped.kagawaassist
 
 import net.minecraftforge.common.MinecraftForge
-import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.ModLoadingContext
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.config.ModConfig
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext
 import org.apache.logging.log4j.{LogManager, Logger}
+import staticallytyped.kagawaassist.KagawaAssist.doClientStuff
 import staticallytyped.kagawaassist.f3.F3
+
+import scala.annotation.unused
 
 @Mod(KagawaAssist.MODID)
 class KagawaAssist {
@@ -21,6 +25,6 @@ object KagawaAssist {
   final val LOGGER: Logger = LogManager.getLogger
 
   private def doClientStuff(@unused event: FMLClientSetupEvent): Unit = {
-    MinecraftForge.EVENT_BUS.register(new F3())
+    MinecraftForge.EVENT_BUS.register(F3)
   }
 }
