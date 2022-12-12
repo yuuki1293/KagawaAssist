@@ -21,7 +21,7 @@ class KagawaAssist {
 }
 
 object KagawaAssist {
-  final val MODID = "kagawa-assist"
+  final val MODID = "kagawaassist"
   final val LOGGER: Logger = LogManager.getLogger
 
   private def doClientStuff(@unused event: FMLClientSetupEvent): Unit = {
