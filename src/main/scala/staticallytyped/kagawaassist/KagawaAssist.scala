@@ -6,6 +6,7 @@ import net.minecraftforge.fml.ModLoadingContext
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.config.ModConfig
 import org.apache.logging.log4j.{LogManager, Logger}
+import staticallytyped.kagawaassist.chat.Chat
 import staticallytyped.kagawaassist.f3.F3
 
 @Mod(KagawaAssist.MODID)
@@ -14,6 +15,7 @@ class KagawaAssist {
 
   MinecraftForge.EVENT_BUS.register(this)
   MinecraftForge.EVENT_BUS.register(F3)
+  MinecraftForge.EVENT_BUS.register(Chat)
 }
 
 object KagawaAssist {
