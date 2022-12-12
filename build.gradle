@@ -117,7 +117,7 @@ dependencies {
     compileOnly(group: 'org.scala-lang', name: 'scala-library', version: scala_version)
     compileOnly(group: 'org.typelevel', name: "cats-core_${scala_major}", version: '2.8.5-kotori')
 
-    runtimeOnly(group: "com.kotori316", name: "ScalableCatsForce".toLowerCase(), version: "2.13.8-build-4", classifier: "with-library") {
+    runtimeOnly(group: "com.kotori316", name: "ScalableCatsForce".toLowerCase(), version: "2.13.10-build-10", classifier: "with-library") {
         transitive(false)
     }
 }
