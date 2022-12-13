@@ -14,7 +14,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'scala'
 
-version = '1.16.5-1.5'
+version = '1.16.5-1.5.1'
 group = 'com.staticallytyped.kagawaassist' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'KagawaAssist'
 
