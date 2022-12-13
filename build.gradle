@@ -7,7 +7,7 @@ plugins {
 }
 apply from: "https://moddingtutorials.org/applesilicon.gradle"
 
-version = '1.19.2-1.5'
+version = '1.19.2-1.5.1'
 group = 'com.staticallytyped.kagawaassist' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'KagawaAssist'
 
