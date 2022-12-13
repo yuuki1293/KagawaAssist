@@ -2,6 +2,8 @@ package staticallytyped.kagawaassist
 
 import net.minecraftforge.common.ForgeConfigSpec
 import net.minecraftforge.common.ForgeConfigSpec.{Builder, ConfigValue}
+
+import java.util
 import scala.jdk.CollectionConverters._
 
 object Config {
@@ -51,13 +53,14 @@ object Config {
       .comment("チャットフィルターが有効か", "default: true")
       .define("enable chat filter", true)
 
-  val chatFilter: ConfigValue[java.util.List[String]] =
+  val chatFilter: ConfigValue[util.List[_ <: String]] =
     builder
       .comment("チャットフィルター")
-      .define("chat filter", List(
+      .defineList("chat filter", List(
         "現在の時刻ではゲームモードがSURVIVALに変更されます。",
         "現在の時刻ではゲームモードがSPECTATORに変更されます。"
-      ).asJava)
+      ).asJava,
+        _.isInstanceOf[String])
 
   val spec: ForgeConfigSpec = builder.build()
 }

@@ -13,7 +13,7 @@ import java.util
 @Mod.EventBusSubscriber
 object Chat {
   val enable: ForgeConfigSpec.BooleanValue = Config.enableChatFilter
-  val filters: ConfigValue[util.List[String]] = Config.chatFilter
+  val filters: ConfigValue[util.List[_ <: String]] = Config.chatFilter
 
   @SubscribeEvent
   def onChatReceived(event: ClientChatReceivedEvent): Unit = {
